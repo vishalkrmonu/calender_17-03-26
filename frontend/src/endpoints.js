@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:8000/api";
+const BASE_URL = "https://calender-17-03-26.onrender.com/api";
 
 export const ENDPOINTS = {
   GET_USERS: `${BASE_URL}/users/`,
