@@ -121,6 +121,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.gzip.GZipMiddleware',
+        'whitenoise.middleware.WhiteNoiseMiddleware',
+
 
     'django.contrib.sessions.middleware.SessionMiddleware', 
     'django.middleware.common.CommonMiddleware',
@@ -206,6 +208,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 ASSET_DIR = os.path.join(BASE_DIR, 'assets')
 
 CODE_EXECUTION_TIMEOUT=60
@@ -246,7 +249,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 ALLOWED_HOSTS = [
-   # '*',
+   '*',
     # '192.168.1.4',
     '127.0.0.1',
     'localhost',
@@ -256,9 +259,7 @@ ALLOWED_HOSTS = [
     '66.23.230.20:3000',
     '66.23.230.20',
    
-    'ccportal.co.in',
-    'cc-portal.cv0aoio6ihof.ap-south-1.rds.amazonaws.com:3000',
-    'cc-portal.cv0aoio6ihof.ap-south-1.rds.amazonaws.com'
+    
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -299,9 +300,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST =  'smtp.gmail.com'
 EMAIL_PORT = 587  # Use 465 for SSL
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'campusconnectionsk356@gmail.com'
-#password='karthik@356'
-EMAIL_HOST_PASSWORD = 'kemt suje jtqu quqg'
+
+
 
 
 CACHES = {
@@ -311,11 +311,6 @@ CACHES = {
     }
 }
 
-
-# Twilio configuration (Replace with your credentials)
-TWILIO_ACCOUNT_SID = 'ACeb8667733d9cb668f940efdba15561db'
-TWILIO_AUTH_TOKEN = '86fac2ee104cd90436846216efc34bcc'
-TWILIO_WHATSAPP_NUMBER = 'whatsapp:+14155238886'  # Twilio's WhatsApp sandbox number
 
 
 
