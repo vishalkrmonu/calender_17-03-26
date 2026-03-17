@@ -27,9 +27,13 @@ function Attendance() {
   // =========================
 
   const fetchUsers = async () => {
-    const res = await fetch(ENDPOINTS.GET_USERS);
-    const data = await res.json();
-    setUsers(data);
+    try {
+      const res = await fetch(ENDPOINTS.GET_USERS);
+      const data = await res.json();
+      setUsers(data);
+    } catch (err) {
+      console.error("Error fetching users:", err);
+    }
   };
 
   // =========================
@@ -37,18 +41,25 @@ function Attendance() {
   // =========================
 
   const fetchAttendance = async () => {
-    const res = await fetch(
-      ENDPOINTS.GET_ATTENDANCE + `?year=${year}&month=${month+1}`
-    );
-    const data = await res.json();
-    setAttendance(data);
+    try {
+      const res = await fetch(
+        `${ENDPOINTS.GET_ATTENDANCE}?year=${year}&month=${month+1}`
+      );
+      const data = await res.json();
+      setAttendance(data);
+    } catch (err) {
+      console.error("Error fetching attendance:", err);
+    }
   };
 
-  // ✅ FIXED (disable eslint warning for deployment)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // =========================
+  // USE EFFECT (SAFE FIX)
+  // =========================
+
   useEffect(() => {
     fetchUsers();
     fetchAttendance();
+    // eslint-disable-next-line
   }, [month, year]);
 
   // =========================
@@ -58,20 +69,24 @@ function Attendance() {
   const handleAddUser = async (e) => {
     e.preventDefault();
 
-    await fetch(ENDPOINTS.ADD_USER,{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        username:username
-      })
-    });
+    try {
+      await fetch(ENDPOINTS.ADD_USER,{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          username:username
+        })
+      });
 
-    setUsername("");
-    setShowAddEmployee(false);
+      setUsername("");
+      setShowAddEmployee(false);
 
-    fetchUsers();
+      fetchUsers();
+    } catch (err) {
+      console.error("Error adding user:", err);
+    }
   };
 
   // =========================
@@ -112,15 +127,19 @@ function Attendance() {
       });
     });
 
-    await fetch(ENDPOINTS.SUBMIT_ATTENDANCE,{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify(payload)
-    });
+    try {
+      await fetch(ENDPOINTS.SUBMIT_ATTENDANCE,{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(payload)
+      });
 
-    alert("Attendance submitted");
+      alert("Attendance submitted");
+    } catch (err) {
+      console.error("Error submitting attendance:", err);
+    }
   };
 
   return (
@@ -128,8 +147,6 @@ function Attendance() {
     <div style={styles.page}>
 
       <div style={styles.card}>
-
-        {/* HEADER */}
 
         <div style={styles.header}>
 
@@ -168,8 +185,6 @@ function Attendance() {
 
         </div>
 
-        {/* ADD USER FORM */}
-
         {showAddEmployee && (
 
           <form style={styles.addForm} onSubmit={handleAddUser}>
@@ -190,24 +205,17 @@ function Attendance() {
 
         )}
 
-        {/* TABLE */}
-
         <div style={styles.tableWrapper}>
 
         <table style={styles.table}>
 
           <thead>
-
             <tr>
-
               <th style={styles.th}>Username</th>
-
               {days.map(day=>(
                 <th style={styles.th} key={day}>{day}</th>
               ))}
-
             </tr>
-
           </thead>
 
           <tbody>
