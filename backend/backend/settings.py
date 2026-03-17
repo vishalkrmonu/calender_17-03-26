@@ -55,14 +55,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # ✅ DATABASE (keep as is, but better add HOST & PORT)
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'attendance1',
-        'USER': 'cc_dev',
-        'PASSWORD': 'CA!mp2us3',
-        'HOST': 'localhost',   # ✅ ADD
-        'PORT': '5432',        # ✅ ADD
-    }
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 # ✅ PASSWORD VALIDATION
