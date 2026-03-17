@@ -46,9 +46,10 @@ function Attendance() {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     fetchUsers();
     fetchAttendance();
+    // eslint-disable-next-line
   }, [month, year]);
 
   // ================= ADD USER =================
