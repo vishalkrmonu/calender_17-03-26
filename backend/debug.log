@@ -1,0 +1,146 @@
+ERROR 2026-03-17 00:46:38,086 log Internal Server Error: /api/username/
+Traceback (most recent call last):
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column "deleted" of relation "app_user" does not exist
+LINE 1: INSERT INTO "app_user" ("username", "deleted") VALUES ('sonu...
+                                            ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Attendance\myvenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\Attendance\myvenv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "E:\Attendance\myvenv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Attendance\backend\app\views.py", line 11, in save_username
+    User.objects.create(username=username)
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "E:\Attendance\myvenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column "deleted" of relation "app_user" does not exist
+LINE 1: INSERT INTO "app_user" ("username", "deleted") VALUES ('sonu...
+                                            ^
+
+ERROR 2026-03-17 00:46:38,106 log "POST /api/username/ HTTP/1.1" 500 145
+WARNING 2026-03-17 00:57:57,291 log Not Found: /api/users/
+WARNING 2026-03-17 00:57:57,293 log Not Found: /api/attendance/data/
+WARNING 2026-03-17 00:57:57,294 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 00:57:57,295 log "GET /api/attendance/data/?date=2026-03-16 HTTP/1.1" 404 179
+WARNING 2026-03-17 00:58:29,153 log Not Found: /api/attendance/data/
+WARNING 2026-03-17 00:58:29,157 log Not Found: /api/users/
+WARNING 2026-03-17 00:58:29,159 log "GET /api/attendance/data/?date=2026-02-16 HTTP/1.1" 404 179
+WARNING 2026-03-17 00:58:29,162 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 00:58:32,010 log Not Found: /api/users/
+WARNING 2026-03-17 00:58:32,014 log Not Found: /api/attendance/data/
+WARNING 2026-03-17 00:58:32,018 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 00:58:32,019 log "GET /api/attendance/data/?date=2026-03-16 HTTP/1.1" 404 179
+WARNING 2026-03-17 01:00:22,282 log Not Found: /api/users/
+WARNING 2026-03-17 01:00:22,285 log Not Found: /api/attendance/data/
+WARNING 2026-03-17 01:00:22,287 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:00:22,288 log "GET /api/attendance/data/?date=2026-03-16 HTTP/1.1" 404 179
+WARNING 2026-03-17 01:00:35,398 log Not Found: /api/add-user/
+WARNING 2026-03-17 01:00:35,400 log "POST /api/add-user/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:00:35,406 log Not Found: /api/users/
+WARNING 2026-03-17 01:00:35,408 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:02:00,807 log Not Found: /api/add-user/
+WARNING 2026-03-17 01:02:00,808 log "POST /api/add-user/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:02:00,811 log Not Found: /api/users/
+WARNING 2026-03-17 01:02:00,812 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:02:37,167 log Not Found: /api/add-user/
+WARNING 2026-03-17 01:02:37,169 log "POST /api/add-user/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:02:37,175 log Method Not Allowed: /api/users/
+WARNING 2026-03-17 01:02:37,176 log "GET /api/users/ HTTP/1.1" 405 40
+WARNING 2026-03-17 01:03:11,146 log Not Found: /api/users/
+WARNING 2026-03-17 01:03:11,147 log Not Found: /api/attendance/data/
+WARNING 2026-03-17 01:03:11,147 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:03:11,148 log "GET /api/attendance/data/?date=2026-03-16 HTTP/1.1" 404 179
+WARNING 2026-03-17 01:03:11,149 log Not Found: /api/users/
+WARNING 2026-03-17 01:03:11,151 log Not Found: /api/attendance/data/
+WARNING 2026-03-17 01:03:11,152 log "GET /api/attendance/data/?date=2026-03-16 HTTP/1.1" 404 179
+WARNING 2026-03-17 01:03:11,152 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:03:15,030 log Not Found: /api/add-user/
+WARNING 2026-03-17 01:03:15,031 log "POST /api/add-user/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:03:15,039 log Not Found: /api/users/
+WARNING 2026-03-17 01:03:15,041 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:03:37,807 log Not Found: /api/add-user/
+WARNING 2026-03-17 01:03:37,808 log "POST /api/add-user/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:03:37,814 log Not Found: /api/users/
+WARNING 2026-03-17 01:03:37,816 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:03:58,634 log Not Found: /api/add-user/
+WARNING 2026-03-17 01:03:58,636 log "POST /api/add-user/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:03:58,641 log Not Found: /api/users/
+WARNING 2026-03-17 01:03:58,642 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:04:42,900 log Not Found: /api/add-user/
+WARNING 2026-03-17 01:04:42,901 log "POST /api/add-user/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:04:42,909 log Not Found: /api/users/
+WARNING 2026-03-17 01:04:42,911 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:06:08,907 log Not Found: /api/attendance/data/
+WARNING 2026-03-17 01:06:08,908 log Not Found: /api/users/
+WARNING 2026-03-17 01:06:08,909 log "GET /api/attendance/data/?date=2026-03-16 HTTP/1.1" 404 179
+WARNING 2026-03-17 01:06:08,909 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:06:08,911 log Not Found: /api/attendance/data/
+WARNING 2026-03-17 01:06:08,913 log Not Found: /api/users/
+WARNING 2026-03-17 01:06:08,914 log "GET /api/attendance/data/?date=2026-03-16 HTTP/1.1" 404 179
+WARNING 2026-03-17 01:06:08,915 log "GET /api/users/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:06:29,692 log Not Found: /api/add-user/
+WARNING 2026-03-17 01:06:29,693 log "POST /api/add-user/ HTTP/1.1" 404 179
+WARNING 2026-03-17 01:06:29,696 log Not Found: /api/users/
+WARNING 2026-03-17 01:06:29,697 log "GET /api/users/ HTTP/1.1" 404 179
